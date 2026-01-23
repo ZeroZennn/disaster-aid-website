@@ -1,11 +1,16 @@
-#  DisasterAid - Sistem Informasi Pelaporan Bencana
+Tentu, ini adalah **versi final dan lengkap**. Saya sudah memastikan bagian **Konfigurasi Environment (Langkah 2)** ditulis secara mendetail di dalamnya, termasuk cara copy file `.env` dan setting database-nya.
+
+Silakan **Copy** seluruh kode di bawah ini dan **Paste** ke file `README.md` Anda:
+
+```markdown
+# DisasterAid - Sistem Informasi Pelaporan Bencana
 
 **Versi Prototype / Functional Testing**
 
 Proyek ini adalah sistem berbasis web untuk pelaporan, verifikasi, dan pemantauan bencana alam secara real-time. Dibangun menggunakan teknologi modern **Laravel** (Backend) dan **React/Inertia.js** (Frontend).
 
-> **Catatan:**
-> Versi ini difokuskan pada **Fungsionalitas Sistem (Core Features)**. Desain antarmuka (UI) saat ini menggunakan template standar dan siap disesuaikan (*re-skin*) sepenuhnya sesuai dengan desain visual yang diinginkan nanti.
+> **Catatan untuk Klien:**
+> Versi ini difokuskan pada **Fungsionalitas Sistem (Core Features)**. Desain antarmuka (UI) saat ini menggunakan template standar dan siap disesuaikan (*re-skin*) sepenuhnya sesuai dengan desain visual (Mockup) yang diinginkan nanti.
 
 ---
 
@@ -56,3 +61,118 @@ composer install
 
 # Install library Frontend (React/Inertia)
 npm install
+
+```
+
+### 2. Konfigurasi Environment (PENTING)
+
+Langkah ini wajib dilakukan agar aplikasi bisa terhubung ke database.
+
+**a. Duplikat File Konfigurasi**
+Jalankan perintah ini di terminal:
+
+```bash
+cp .env.example .env
+
+```
+
+*(Catatan: Jika menggunakan Command Prompt Windows biasa, gunakan perintah: `copy .env.example .env`)*
+
+**b. Edit File .env**
+Buka file bernama **`.env`** yang baru saja dibuat menggunakan text editor (Notepad, VS Code, dll). Cari bagian Database dan ubah sesuai settingan komputer Anda:
+
+```ini
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=disaster_aid_db  # <-- Ganti dengan nama database yang Anda buat di phpMyAdmin
+DB_USERNAME=root             # <-- User database (default XAMPP/Laragon: root)
+DB_PASSWORD=                 # <-- Password database (default kosong)
+
+```
+
+### 3. Setup Database & Data Awal
+
+Jalankan perintah berikut untuk membuat struktur tabel dan mengisi data akun admin standar:
+
+```bash
+# Generate App Key (Kunci Enkripsi Aplikasi)
+php artisan key:generate
+
+# Membuat tabel database (Pastikan database 'disaster_aid_db' sudah dibuat manual di phpMyAdmin)
+php artisan migrate
+
+# Mengisi data dummy (Akun Admin, Jenis Bencana, Wilayah)
+php artisan db:seed
+
+```
+
+### 4. Setup Penyimpanan File
+
+Agar foto bukti laporan bisa muncul di browser, jalankan:
+
+```bash
+php artisan storage:link
+
+```
+
+---
+
+## ▶️ Cara Menjalankan Aplikasi
+
+Aplikasi ini membutuhkan **2 Terminal** yang berjalan bersamaan agar berfungsi normal:
+
+**Terminal 1 (Menjalankan Server Backend):**
+
+```bash
+php artisan serve
+
+```
+
+**Terminal 2 (Menjalankan Frontend Vite):**
+
+```bash
+npm run dev
+
+```
+
+Setelah keduanya jalan, buka browser dan akses:
+👉 **http://127.0.0.1:8000**
+
+---
+
+## 🔑 Akun Login (Testing)
+
+Gunakan akun berikut untuk menguji fitur berdasarkan hak akses:
+
+| Role | Email | Password |
+| --- | --- | --- |
+| **Admin** | `admin@example.com` | `password` |
+| **User** | `user@example.com` | `password` |
+
+*(Anda juga bisa mencoba mendaftar akun baru lewat menu Register di halaman depan)*
+
+---
+
+## 🧪 Skenario Pengujian (Checklist)
+
+Untuk memastikan alur sistem berjalan lancar, silakan coba skenario berikut:
+
+1. **Lapor:** Login sebagai **User**, buat laporan baru (isi foto & lokasi).
+2. **Cek Peta (Awal):** Buka menu "Pantau Peta". Laporan tadi **belum muncul** (karena status masih Pending).
+3. **Verifikasi:** Login sebagai **Admin**, buka Dashboard -> Laporan Masuk. Klik "Verifikasi" pada laporan tadi.
+4. **Cek Peta (Akhir):** Kembali ke menu "Pantau Peta". Titik lokasi **sudah muncul**. Klik marker untuk melihat detail & coba tombol "Buka Rute Google Maps".
+5. **Export:** Di panel Admin, masuk menu "Rekap & Export". Coba download Excel harian.
+6. **Kelola User:** Di panel Admin, coba tambahkan user baru atau edit user yang ada.
+
+---
+
+## ⚠️ Troubleshooting
+
+* **Gambar tidak muncul?** Pastikan sudah menjalankan `php artisan storage:link`.
+* **Tampilan berantakan?** Pastikan `npm run dev` sedang berjalan.
+* **Error Database?** Pastikan database sudah dibuat di phpMyAdmin dan nama database di file `.env` sudah sesuai.
+
+```
+
+```
