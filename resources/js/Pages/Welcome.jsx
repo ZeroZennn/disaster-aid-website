@@ -1,9 +1,10 @@
-import { Head, Link } from '@inertiajs/react';
+import { Head, Link, usePage } from '@inertiajs/react';
 import PublicLayout from '@/Layouts/PublicLayout';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
 
 export default function Welcome() {
+    const { flash } = usePage().props;
     // State untuk Modal Tracking
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [ticketInput, setTicketInput] = useState('');
@@ -32,9 +33,34 @@ export default function Welcome() {
         }
     };
 
+    const [showSuccess, setShowSuccess] = useState(false);
+
+    useEffect(() => {
+        if (flash?.message) {
+            setShowSuccess(true);
+        }
+    }, [flash]);
+
     return (
         <PublicLayout>
             <Head title="Selamat Datang" />
+
+            {showSuccess && (
+                <div className="fixed top-24 left-1/2 transform -translate-x-1/2 z-50 animate-bounce-in">
+                    <div className="bg-green-100 border border-green-400 text-green-700 px-6 py-4 rounded-xl shadow-2xl flex items-center gap-4 relative">
+                        <div className="bg-green-200 p-2 rounded-full">
+                            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>
+                        </div>
+                        <div>
+                            <strong className="font-bold text-lg">Laporan Terkirim!</strong>
+                            <p className="block sm:inline text-sm mt-1">{flash.message}</p>
+                        </div>
+                        <button onClick={() => setShowSuccess(false)} className="text-green-500 hover:text-green-800 ml-4">
+                            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                        </button>
+                    </div>
+                </div>
+            )}
 
             {/* Hero Section */}
             <div className="max-w-6xl mx-auto px-6 py-24 text-center">
@@ -103,7 +129,7 @@ export default function Welcome() {
                         {/* Body Modal */}
                         <div className="p-6">
                             <form onSubmit={handleTrackStatus}>
-                                <label className="block text-sm font-medium text-gray-700 mb-2">Nomor Tiket (Contoh: RPT-2026...)</label>
+                                <label className="block text-sm font-medium text-gray-700 mb-2">Nomor Tiket (Contoh: AID-2026...)</label>
                                 <div className="flex gap-2">
                                     <input 
                                         type="text" 

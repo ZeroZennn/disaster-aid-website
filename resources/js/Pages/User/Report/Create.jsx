@@ -125,10 +125,15 @@ export default function Create({ auth, disasterTypes, assistanceTypes, provinces
         setData(data => ({ ...data, latitude: latlng.lat, longitude: latlng.lng }));
     };
 
+    if (Object.keys(errors).length > 0) {
+        console.error("VALIDASI ERROR DARI SERVER:", errors);
+    }
+
     const submit = (e) => {
         e.preventDefault();
         post(route('report.store'));
     };
+
 
     return (
         <AuthenticatedLayout
