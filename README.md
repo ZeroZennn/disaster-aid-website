@@ -66,7 +66,7 @@ Langkah ini wajib dilakukan agar aplikasi bisa terhubung ke database.
 Jalankan perintah ini di terminal:
 ```bash
 cp .env.example .env
-
+```
 
 
 *(Catatan: Jika menggunakan Command Prompt Windows biasa, gunakan perintah: `copy .env.example .env`)*
