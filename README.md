@@ -140,8 +140,8 @@ Gunakan akun berikut untuk menguji fitur berdasarkan hak akses:
 
 | Role | Email | Password |
 | --- | --- | --- |
-| **Admin** | `admin@example.com` | `password` |
-| **User** | `user@example.com` | `password` |
+| **Admin** | `admin@bpdb.com` | `password` |
+| **User** | `user@bpdb.com` | `password` |
 
 *(Anda juga bisa mencoba mendaftar akun baru lewat menu Register di halaman depan)*
 
