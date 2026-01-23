@@ -11,6 +11,9 @@ use App\Http\Controllers\Admin\ManageUserController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
+use App\Http\Controllers\Admin\ExportController;
+use App\Http\Controllers\PublicMapController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -23,6 +26,10 @@ Route::get('/', function () {
         'canLogin' => Route::has('login'),
     ]);
 })->name('home');
+
+// HALAMAN PETA SEBARAN (PUBLIC)
+Route::get('/peta-bencana', [PublicMapController::class, 'index'])->name('public-map.index');
+Route::get('/api/map-data', [PublicMapController::class, 'getMapData'])->name('public-map.data');
 
 // [2] LOGIN (Guest Only) - Diurus oleh auth.php
 require __DIR__.'/auth.php';
@@ -57,9 +64,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 Route::prefix('admin')->middleware(['auth'])->name('admin.')->group(function () {
     
     // [5] DASHBOARD ADMIN
-    Route::get('/dashboard', function() {
-        return Inertia::render('Admin/Dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
 
     // [6] KELOLA LAPORAN
     Route::resource('laporan', ManageReportController::class);
@@ -69,4 +74,8 @@ Route::prefix('admin')->middleware(['auth'])->name('admin.')->group(function () 
     
     // [8] REKAP / EXPORT
     Route::get('/rekap', [ManageReportController::class, 'export'])->name('rekap.index');
+
+    // HALAMAN EXPORT
+    Route::get('/export', [ExportController::class, 'index'])->name('export.index');
+    Route::get('/export/download', [ExportController::class, 'download'])->name('export.download');
 });

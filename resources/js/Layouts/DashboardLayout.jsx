@@ -21,6 +21,17 @@ export default function DashboardLayout({ children }) {
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
             )
         },
+        { 
+            name: 'Pantau Peta', 
+            route: 'public-map.index', 
+            icon: (
+                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0121 18.382V7.618a1 1 0 01-.806-.98l-4.553-2.276M15 7l-5.447-2.724A1 1 0 019 3.382V14.118a1 1 0 01-.806.98L15 7m0 13V7"></path>
+                </svg>
+            )
+        },
+        
+        
     ];
 
     return (
@@ -31,7 +42,7 @@ export default function DashboardLayout({ children }) {
                 {/* Logo Area */}
                 <div className="h-16 flex items-center justify-center border-b border-gray-100">
                     <Link href="/" className="flex items-center gap-2 text-xl font-extrabold text-gray-800 tracking-tighter hover:opacity-80 transition">
-                        <span className="text-2xl">🚨</span>
+                        <svg className="w-8 h-8" fill="none" stroke="red" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
                         <span className="text-red-600">Disaster</span>Aid
                     </Link>
                 </div>
