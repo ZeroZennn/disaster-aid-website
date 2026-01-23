@@ -1,8 +1,3 @@
-Tentu, ini adalah **versi final dan lengkap**. Saya sudah memastikan bagian **Konfigurasi Environment (Langkah 2)** ditulis secara mendetail di dalamnya, termasuk cara copy file `.env` dan setting database-nya.
-
-Silakan **Copy** seluruh kode di bawah ini dan **Paste** ke file `README.md` Anda:
-
-```markdown
 # DisasterAid - Sistem Informasi Pelaporan Bencana
 
 **Versi Prototype / Functional Testing**
@@ -62,15 +57,11 @@ composer install
 # Install library Frontend (React/Inertia)
 npm install
 
-```
-
 ### 2. Konfigurasi Environment (PENTING)
-
 Langkah ini wajib dilakukan agar aplikasi bisa terhubung ke database.
 
 **a. Duplikat File Konfigurasi**
 Jalankan perintah ini di terminal:
-
 ```bash
 cp .env.example .env
 
@@ -176,3 +167,6 @@ Untuk memastikan alur sistem berjalan lancar, silakan coba skenario berikut:
 ```
 
 ```
+
+
+
