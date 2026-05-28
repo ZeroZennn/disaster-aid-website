@@ -457,9 +457,9 @@ export default function Welcome() {
                                                 <p className="font-bold text-gray-900">{trackingResult.ticket}</p>
                                             </div>
                                             <span className={`px-2 py-1 rounded text-xs font-bold uppercase ${trackingResult.status === 'pending' ? 'bg-yellow-100 text-yellow-800' :
-                                                    trackingResult.status === 'verified' ? 'bg-blue-100 text-blue-800' :
-                                                        trackingResult.status === 'rejected' ? 'bg-red-100 text-red-800' :
-                                                            'bg-green-100 text-green-800'
+                                                trackingResult.status === 'verified' ? 'bg-blue-100 text-blue-800' :
+                                                    trackingResult.status === 'rejected' ? 'bg-red-100 text-red-800' :
+                                                        'bg-green-100 text-green-800'
                                                 }`}>
                                                 {trackingResult.status}
                                             </span>

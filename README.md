@@ -1,174 +1,105 @@
-# DisasterAid - Sistem Informasi Pelaporan Bencana
+# **Disaster Aid Website**
 
-**Versi Prototype / Functional Testing**
+## Description / Overview
+Disaster Aid is a comprehensive web-based system designed for real-time reporting, verification, and monitoring of natural disasters. The platform aims to streamline crisis management by providing actionable insights, mapping affected areas, and tracking resource and assistance requirements. It serves as a vital tool for local authorities, first responders, and volunteers to coordinate disaster relief efforts efficiently.
 
-Proyek ini adalah sistem berbasis web untuk pelaporan, verifikasi, dan pemantauan bencana alam secara real-time. Dibangun menggunakan teknologi modern **Laravel** (Backend) dan **React/Inertia.js** (Frontend).
+## Demo
+<!-- Insert GIF or Image of the app here -->
+[Live Demo Link (Placeholder)](#)
 
-> **Catatan untuk Klien:**
-> Versi ini difokuskan pada **Fungsionalitas Sistem (Core Features)**. Desain antarmuka (UI) saat ini menggunakan template standar dan siap disesuaikan (*re-skin*) sepenuhnya sesuai dengan desain visual (Mockup) yang diinginkan nanti.
+## Features
+- **Real-Time Disaster Reporting:** Quickly submit reports of natural disasters including evidence (photos/videos).
+- **Interactive Map Integration:** Visual monitoring of reported disasters and affected areas using live mapping tools.
+- **Assistance & Resource Tracking:** Monitor details about required assistance and distribute resources efficiently.
+- **Detailed Regional Data:** Built-in comprehensive region data (Provinces, Cities, Districts, Villages) for accurate location tracking in Indonesia.
+- **Data Export & Reporting:** Ability to generate and export data (via Excel) for further analysis and record-keeping.
+- **Secure Authentication & Roles:** Role-based access control and secure API interactions using Laravel Sanctum.
+- **Dynamic Analytics Dashboard:** Interactive charts and visualizations for data-driven decision-making.
 
----
+## Tech Stack / Built With
+**Frontend:**
+- React (v18)
+- Inertia.js
+- Tailwind CSS
+- Chart.js & react-chartjs-2
+- Leaflet & react-leaflet
 
-## 📋 Fitur Utama
+**Backend:**
+- PHP 8.2+
+- Laravel 12.0
+- Laravel Sanctum
+- Laravolt Indonesia (Regional Data)
+- Laravel Excel (Maatwebsite)
 
-Berikut adalah fitur-fitur yang siap untuk diuji coba:
+**Database & Tools:**
+- SQLite / MySQL / PostgreSQL (Configurable)
+- Vite
+- Composer & npm
 
-1.  **Pelaporan Bencana (User)**
-    * Formulir pelaporan dengan upload bukti foto/video.
-    * Deteksi lokasi otomatis (Latitude/Longitude).
-2.  **Verifikasi Laporan (Admin)**
-    * Dashboard statistik & grafik tren laporan mingguan.
-    * Sistem Approval: Verifikasi, Tolak (wajib alasan), dan Selesai.
-    * Notifikasi *popup* interaktif (Custom Alert).
-3.  **Peta Sebaran Publik (Public Map)**
-    * Visualisasi titik bencana yang **sudah diverifikasi** menggunakan Leaflet Maps.
-    * Filter data berdasarkan jenis bencana.
-    * Ikon marker visual (Banjir, Kebakaran, Gempa, dll).
-    * Integrasi tombol navigasi langsung ke **Google Maps**.
-4.  **Manajemen Data & Admin**
-    * **Export Excel:** Unduh laporan Harian & Bulanan.
-    * **Manajemen User:** Tambah, Edit, Hapus User, dan Pengaturan Role Admin.
-    * **Pengaturan Akun:** Ganti profil dan password.
+## Installation
+Follow these step-by-step instructions to set up the project locally:
 
----
+1. **Clone the repository:**
+   ```bash
+   git clone <repository-url>
+   cd disaster-aid
+   ```
 
-## 🛠️ Persyaratan Sistem (Prerequisites)
+2. **Install PHP dependencies:**
+   ```bash
+   composer install
+   ```
 
-Pastikan komputer server/local sudah terinstal:
+3. **Install Node dependencies:**
+   ```bash
+   npm install
+   ```
 
-1.  **PHP** (Versi 8.1 atau lebih baru).
-2.  **Composer** (Untuk install library PHP).
-3.  **Node.js & NPM** (Untuk compile aset Frontend).
-4.  **MySQL** (Database).
+4. **Environment Setup:**
+   Copy the example environment file and configure your database settings if necessary.
+   ```bash
+   cp .env.example .env
+   ```
 
----
+5. **Generate Application Key:**
+   ```bash
+   php artisan key:generate
+   ```
 
-## 🚀 Panduan Instalasi (Langkah demi Langkah)
+6. **Run Migrations:**
+   *(Ensure your database server is running or configure SQLite in `.env`)*
+   ```bash
+   php artisan migrate
+   ```
 
-Ikuti langkah ini secara berurutan di terminal (Command Prompt / Terminal):
+## Usage
+To run the application locally, you need to start both the backend server and the frontend build process.
 
-### 1. Clone & Install Dependencies
-Masuk ke folder proyek, lalu jalankan perintah berikut untuk mengunduh semua library yang dibutuhkan:
+1. **Start the Laravel development server:**
+   ```bash
+   php artisan serve
+   ```
+   *The backend will typically be accessible at `http://localhost:8000`.*
 
-```bash
-# Install library Backend (Laravel)
-composer install
+2. **Start the Vite development server:**
+   Open a new terminal window/tab and run:
+   ```bash
+   npm run dev
+   ```
 
-# Install library Frontend (React/Inertia)
-npm install
+*(Note: The Laravel starter kit provides a convenient command `npm run dev` or `composer run dev` which may start both services using concurrently, depending on your setup. Refer to your package scripts for more details.)*
 
-```
+## Contributing
+Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
-### 2. Konfigurasi Environment (PENTING)
-Langkah ini wajib dilakukan agar aplikasi bisa terhubung ke database.
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-**a. Duplikat File Konfigurasi**
-Jalankan perintah ini di terminal:
-```bash
-cp .env.example .env
-```
+## License
+Distributed under the MIT License. See `LICENSE` for more information.
 
-
-*(Catatan: Jika menggunakan Command Prompt Windows biasa, gunakan perintah: `copy .env.example .env`)*
-
-**b. Edit File .env**
-Buka file bernama **`.env`** yang baru saja dibuat menggunakan text editor (Notepad, VS Code, dll). Cari bagian Database dan ubah sesuai settingan komputer Anda:
-
-```ini
-DB_CONNECTION=mysql
-DB_HOST=127.0.0.1
-DB_PORT=3306
-DB_DATABASE=disaster_aid_db  # <-- Ganti dengan nama database yang Anda buat di phpMyAdmin
-DB_USERNAME=root             # <-- User database (default XAMPP/Laragon: root)
-DB_PASSWORD=                 # <-- Password database (default kosong)
-
-```
-
-### 3. Setup Database & Data Awal
-
-Jalankan perintah berikut untuk membuat struktur tabel dan mengisi data akun admin standar:
-
-```bash
-# Generate App Key (Kunci Enkripsi Aplikasi)
-php artisan key:generate
-
-# Membuat tabel database (Pastikan database 'disaster_aid_db' sudah dibuat manual di phpMyAdmin)
-php artisan migrate
-
-# Mengisi data dummy (Akun Admin, Jenis Bencana, Wilayah)
-php artisan db:seed
-
-```
-
-### 4. Setup Penyimpanan File
-
-Agar foto bukti laporan bisa muncul di browser, jalankan:
-
-```bash
-php artisan storage:link
-
-```
-
----
-
-## ▶️ Cara Menjalankan Aplikasi
-
-Aplikasi ini membutuhkan **2 Terminal** yang berjalan bersamaan agar berfungsi normal:
-
-**Terminal 1 (Menjalankan Server Backend):**
-
-```bash
-php artisan serve
-
-```
-
-**Terminal 2 (Menjalankan Frontend Vite):**
-
-```bash
-npm run dev
-
-```
-
-Setelah keduanya jalan, buka browser dan akses:
-👉 **http://127.0.0.1:8000**
-
----
-
-## 🔑 Akun Login (Testing)
-
-Gunakan akun berikut untuk menguji fitur berdasarkan hak akses:
-
-| Role | Email | Password |
-| --- | --- | --- |
-| **Admin** | `admin@bpdb.com` | `password` |
-| **User** | `user@bpdb.com` | `password` |
-
-*(Anda juga bisa mencoba mendaftar akun baru lewat menu Register di halaman depan)*
-
----
-
-## 🧪 Skenario Pengujian (Checklist)
-
-Untuk memastikan alur sistem berjalan lancar, silakan coba skenario berikut:
-
-1. **Lapor:** Login sebagai **User**, buat laporan baru (isi foto & lokasi).
-2. **Cek Peta (Awal):** Buka menu "Pantau Peta". Laporan tadi **belum muncul** (karena status masih Pending).
-3. **Verifikasi:** Login sebagai **Admin**, buka Dashboard -> Laporan Masuk. Klik "Verifikasi" pada laporan tadi.
-4. **Cek Peta (Akhir):** Kembali ke menu "Pantau Peta". Titik lokasi **sudah muncul**. Klik marker untuk melihat detail & coba tombol "Buka Rute Google Maps".
-5. **Export:** Di panel Admin, masuk menu "Rekap & Export". Coba download Excel harian.
-6. **Kelola User:** Di panel Admin, coba tambahkan user baru atau edit user yang ada.
-
----
-
-## ⚠️ Troubleshooting
-
-* **Gambar tidak muncul?** Pastikan sudah menjalankan `php artisan storage:link`.
-* **Tampilan berantakan?** Pastikan `npm run dev` sedang berjalan.
-* **Error Database?** Pastikan database sudah dibuat di phpMyAdmin dan nama database di file `.env` sudah sesuai.
-
-```
-
-```
-
-
-
+## Credits / Acknowledgments
+<!-- Insert shoutouts, team members, or inspirations here -->
